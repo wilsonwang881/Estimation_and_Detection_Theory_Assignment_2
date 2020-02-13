@@ -45,9 +45,40 @@
     \item %Q2
     
     \begin{enumerate}
+    
         \item 
         
+        \begin{equation*}
+            \begin{aligned}
+                E[max(X_1, X_2...X_n)] &= \int_{0}^{1}...\int_{0}^{1} max(x_1, x_2...x_n) dx_1 dx_2...dx_n
+            \end{aligned}
+        \end{equation*}
+        
+        The ordering of $n$ random variables that are i.i.d has $n!$ possible scenarios. Break the $n$ integration into $n!$ regions with same value of its corresponding integral:
+        
+        \begin{equation*}
+            \begin{aligned}
+                &= n! \int_{x_1<...<x_n} max(x_1, x_2...x_n) dx_1 dx_2...dx_n \\
+                &= n! \int_{x_1<...<x_n} x_n dx_1 dx_2...dx_n \\
+                &= n! \int_{0}^{1} \int_{0}^{x_n} \int_{0}^{x_{n-1}}...\int_{0}^{x_{2}} x_n dx_1 dx_2...dx_n \\
+                &= n! \int_{0}^{1} \int_{0}^{x_n} \int_{0}^{x_{n-1}}...\int_{0}^{x_{3}} x_n x_2 dx_2 dx_3...dx_n \\
+                &= n! \int_{0}^{1} \int_{0}^{x_n} \int_{0}^{x_{n-1}}...\int_{0}^{x_{4}} x_n \frac{x_3^2}{2} dx_3 dx_3...dx_n \\
+                &= n! \int_{0}^{1} x_n \frac{1}{(n-1)!} x_n^{n-1} dx_n \\
+                &= \int_{0}^{1} n x_n^n dx_n \\
+                &= \frac{n}{n+1}
+            \end{aligned}
+        \end{equation*}
+        
         \item
+        
+        \begin{equation*}
+            \begin{aligned}
+                max(X_1, X_2...X_n) &= 1 - min(X_1, X_2...X_n) \\
+                E[max(X_1, X_2...X_n)] &= E[1 - min(X_1, X_2...X_n)] \\
+                \frac{n}{n+1} = 1 - E[min(X_1, X_2...X_n)] \\
+                E[min(X_1, X_2...X_n)] = \frac{1}{n+1}
+            \end{aligned}
+        \end{equation*}
         
     \end{enumerate}
     
@@ -56,7 +87,42 @@
     \begin{enumerate}
         \item 
         
-        \item
+        \begin{gather*}
+            \begin{cases} 
+            Pr(X_i \geq X_1) = \int_{X_1}^{\infty} = p \\
+            Pr(X_i \leq X_1) = \int_{-\infty}^{X_1} = q = 1 - p
+            \end{cases}
+        \end{gather*}
+        
+        The distribution of the number of years until the first year's rainfall is exceeded for the first time has a geometric distribution with the PMF:
+        
+        \begin{gather*}
+            \begin{cases}
+            Pr(i \leq 1) = 0 \\
+            Pr(i = k) = p^{k-2} q
+            \end{cases}
+        \end{gather*}
+        
+        \item 
+        
+        The mean number of years until $X_1$ is exceeded for the first time is listed as the following:
+        
+        \begin{equation*}
+            \begin{aligned}
+                \lim_{n \rightarrow \infty} \frac{1}{n} \sum_{i = 2}^{n} i p^{i-2} q &= \lim_{n \rightarrow \infty} \frac{p^2 q}{n}  \sum_{i = 2}^{n} i p^{i}
+            \end{aligned}
+        \end{equation*}
+        
+        Test for convergence: the ratio between the next term in the sum and the previous term in the sum is:
+        
+        \begin{equation*}
+            \begin{aligned}
+                \frac{(i + 1) p^{i + 1}}{i p^i} &= \frac{(i + 1) p}{i} \\
+                &= p (1 + \frac{1}{i})
+            \end{aligned}
+        \end{equation*}
+        
+        Because $(1 + \frac{1}{i}) > 1$ and $p > 0$: the ratio between the term in the sum and its previous sum is always increasing. Hence the sum will never converge and the average number of years should be infinite.
         
     \end{enumerate}
     
