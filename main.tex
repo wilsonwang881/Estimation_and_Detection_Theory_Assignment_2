@@ -1,0 +1,129 @@
+\documentclass[11pt,letterpaper,titlepage]{article}
+
+\usepackage{geometry}
+\geometry{left=1.5cm,right=1.5cm,top=1.5cm,bottom=2.5cm}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{fancyhdr}
+
+\usepackage{amsmath}
+
+\usepackage{amssymb}
+
+\usepackage{booktabs}
+
+\usepackage{pifont}
+
+\pagestyle{fancy}
+\lhead{}
+\rhead{}
+\lfoot{ECEN 662 Estimation and Detection Theory}
+\cfoot{\thepage}
+\rfoot{Assignment 2 @Lei Wang}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headwidth}{\textwidth}
+\renewcommand{\footrulewidth}{0.4pt}
+\newcommand{\RomanNumeralCaps}[1]
+    {\MakeUppercase{\romannumeral #1}}
+
+\begin{document}
+
+\begin{enumerate}
+    \item %Q1
+    
+    \begin{equation*}
+        \begin{aligned}
+            E[X] &= \int_{\infty}^{\infty} x f_X(x) dx \\
+            &= \int_{-\infty}^{x} u \cdot 0 du + \int_{x}^{\infty} u \frac{1}{\sqrt{2\pi}} e^{-\frac{u^2}{2}} du \\
+            &= -\frac{1}{\sqrt{2\pi}} e^{-\frac{u^2}{2}} |_{x}^{\infty} \\
+            &= \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}
+        \end{aligned}
+    \end{equation*}
+    
+    \item %Q2
+    
+    \begin{enumerate}
+        \item 
+        
+        \item
+        
+    \end{enumerate}
+    
+    \item %Q3
+    
+    \begin{enumerate}
+        \item 
+        
+        \item
+        
+    \end{enumerate}
+    
+    \item %Q4
+    
+    The probability that a continuous random variable is greater than its expectation is $\frac{1}{2}$.
+    
+    Therefore, $Y_i$s are binomial random variables with the following parameters:
+    
+    \begin{gather*}
+        \begin{cases}
+        Pr(Y_i = 1) = \frac{1}{2} \\
+        Pr(Y_i = 0) = \frac{1}{2}
+        \end{cases}
+    \end{gather*}
+
+    Hence the distribution of the sum of $Y_i$s is the following:
+    
+    \begin{equation*}
+        Pr(\sum_{i = 1}^{n} Y_i = k) = {n \choose k} \frac{1}{2^n}, k \in [0, n] \text{ and } k \in \mathbb{Z}
+    \end{equation*}
+    
+    
+    \item %Q5
+    
+    \item %Q6
+    
+    \begin{enumerate}
+        \item 
+        
+        \begin{equation*}
+            \begin{aligned}
+                \overline{X_n} &= \frac{1}{n} \sum_{i = 1}^{n} X_i \\
+                \sum_{i = 1}^{n} X_i &= n \overline{X_n} \\
+                \sum_{i = 1}^{n} X_i + X_{n+1} &= n \overline{X_n} + X_{n+1} \\
+                \sum_{i = 1}^{n+1} X_i &= n \overline{X_n} + X_{n+1} \\
+                \frac{1}{n + 1} \sum_{i = 1}^{n+1} X_i &= \frac{n \overline{X_n} + X_{n+1}}{n + 1} \\
+                \overline{X_{n + 1}} &= \frac{n \overline{X_n} + X_{n+1}}{n + 1}
+            \end{aligned}
+        \end{equation*}
+        
+        \item
+        
+        \begin{equation*}
+            \begin{aligned}
+                S_n^2 & = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline{X_n})^2 \\
+                S_{n+1}^2 & = \frac{1}{n} \sum_{i=1}^{n+1} (X_i - \overline{X_{n+1}})^2 \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + \sum_{i=1}^{n+1} (X_i - \overline{X_{n+1}})^2 - \sum_{i=1}^{n} (X_i - \overline{X_n})^2 \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (X_{n + 1} - \overline{X_{n+1}})^2 + \sum_{i=1}^{n} (X_i - \overline{X_{n+1}})^2 - \sum_{i=1}^{n} (X_i - \overline{X_n})^2 \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (X_{n + 1} - \overline{X_{n+1}})^2 + \sum_{i=1}^{n} [(X_i - \overline{X_{n+1}})^2 - (X_i - \overline{X_n})^2] \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (X_{n + 1} - \overline{X_{n+1}})^2 + \sum_{i=1}^{n} [X_i^2 - 2 X_i \overline{X_{n+1}} + \overline{X_{n+1}}^2 - X_i^2 + 2 X_i \overline{X_{n}} - \overline{X_{n}}^2] \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (X_{n + 1} - \overline{X_{n+1}})^2 + \sum_{i=1}^{n} [- 2 X_i \overline{X_{n+1}} + \overline{X_{n+1}}^2 + 2 X_i \overline{X_{n}} - \overline{X_{n}}^2] \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (X_{n + 1} - \overline{X_{n+1}})^2 + n \overline{X_{n+1}}^2 - n \overline{X_{n}}^2 + (- 2 \overline{X_{n+1}} + 2 \overline{X_{n}}) \sum_{i=1}^{n} [X_i ] \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (X_{n + 1} - \overline{X_{n+1}})^2 + n \overline{X_{n+1}}^2 - n \overline{X_{n}}^2 + (- 2 \overline{X_{n+1}} + 2 \overline{X_{n}}) n \overline{X_n} \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (X_{n + 1} - \overline{X_{n+1}})^2 + n \overline{X_{n+1}}^2 + n \overline{X_{n}}^2 - 2 n \overline{X_n} \overline{X_{n+1}} \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (X_{n + 1} - \overline{X_{n+1}})^2 + n (\overline{X_n} - \overline{X_{n+1}})^2 \text{, use the answer in a)}\\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (X_{n + 1} - \frac{n \overline{X_n} + X_{n+1}}{n + 1})^2 + n (\overline{X_n} - \frac{n \overline{X_n} + X_{n+1}}{n + 1})^2 \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (\frac{(n + 1)X_{n+1} - n \overline{X_n} - X_{n+1}}{n+1})^2 + n (\frac{(n + 1) \overline{X_n} - n \overline{X_n} - X_{n+1}}{n+1})^2 \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + (\frac{n X_{n+1} - n \overline{X_n}}{n+1})^2 + n (\frac{\overline{X_n} - X_{n+1}}{n+1})^2 \\
+                n S_{n+1}^2 &= (n - 1) S_n^2 + \frac{n}{(n + 1)^2} (n \overline{X_{n+1}}^2 - 2 n X_{n+1} \overline{X_n} + n \overline{X_n}^2 + \overline{X_n}^2 - 2 X_{n+1} \overline{X_n} + \overline{X_n}^2) \\
+                 n S_{n+1}^2 &= (n - 1) S_n^2 + \frac{n}{(n + 1)^2} (n + 1) (\overline{X_{n+1}}^2 - 2 X_{n+1} \overline{X_n} + \overline{X_n}^2) \\
+                 n S_{n+1}^2 &= (n - 1) S_n^2  + \frac{n}{n + 1} (X_{n+1} - \overline{X_n}^2)^2
+            \end{aligned}
+        \end{equation*}
+        
+    \end{enumerate}
+    
+\end{enumerate}
+
+\end{document}
